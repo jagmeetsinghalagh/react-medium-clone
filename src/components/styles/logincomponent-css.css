@@ -1,0 +1,32 @@
+.login-component{
+    margin:2rem;
+}
+
+.login-component a{
+    color: #83a0a0;
+}
+
+.login-component a:hover{
+    color: #83a0a0;
+}
+
+.login-form{
+    margin:1rem;
+}
+
+.login-form > input{
+    margin: 1rem;
+    padding: 1.5rem;
+}
+
+.login-form .btn{
+    background-color: #4c5f6b;
+    color: white;
+    transition: 0.4s;
+}
+
+.login-form .btn:hover{
+    background-color: white;
+    border: 1px solid #4c5f6b;
+    color: black;
+}

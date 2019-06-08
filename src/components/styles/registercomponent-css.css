@@ -1,0 +1,32 @@
+.register-component{
+    margin:2rem;
+}
+
+.register-component a{
+    color: #83a0a0;
+}
+
+.register-component a:hover{
+    color: #83a0a0;
+}
+
+.register-form{
+    margin:1rem;
+}
+
+.register-form > input{
+    margin: 1rem;
+    padding: 1.5rem;
+}
+
+.register-form .btn{
+    background-color: #4c5f6b;
+    color: white;
+    transition: 0.4s;
+}
+
+.register-form .btn:hover{
+    background-color: white;
+    border: 1px solid #4c5f6b;
+    color: black;
+}

@@ -1,0 +1,27 @@
+.navbar-custom{
+    display: flex;
+    background-color: #2b3d41;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+.navbar-custom ul{
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.navbar-custom li{
+    display: block;
+    padding: 0 1rem;
+}
+
+.navbar-custom a{
+    color: #fbfbfb;
+    text-decoration: none;
+}
+.navbar-custom a:hover{
+    color: #83a0a0;
+    text-decoration: none;
+}
