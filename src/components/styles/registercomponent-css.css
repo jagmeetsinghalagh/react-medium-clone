@@ -3,11 +3,11 @@
 }
 
 .register-component a{
-    color: #83a0a0;
+    color: #f9b9f2;
 }
 
 .register-component a:hover{
-    color: #83a0a0;
+    color: #f9b9f2;
 }
 
 .register-form{
@@ -28,5 +28,5 @@
 .register-form .btn:hover{
     background-color: white;
     border: 1px solid #4c5f6b;
-    color: black;
+    color: #4c5f6b;
 }
