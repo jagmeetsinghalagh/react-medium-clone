@@ -1,0 +1,13 @@
+.comment .img-rounded{
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+}
+
+.comment{
+    margin-bottom: 1rem;
+}
+
+.comment .card-footer{
+    max-height: 3rem;
+}

@@ -5,6 +5,8 @@ import Navbar from './Navbar';
 import LoginComponent from './LoginComponent';
 import HomeComponent from './HomeComponent';
 import RegisterComponent from './RegisterComponent';
+import Profile from './Profile';
+import ArticleDetails from './ArticleDetails';
 
 const App = () => {
     return (
@@ -14,6 +16,8 @@ const App = () => {
                 <Route path="/" exact component={HomeComponent} />
                 <Route path="/login" component={LoginComponent} />
                 <Route path="/register" component={RegisterComponent} />
+                <Route path="/profiles/:username" component={Profile} />
+                <Route path="/article/:slug" component={ArticleDetails} />
             </Switch>
         </Router>
     );

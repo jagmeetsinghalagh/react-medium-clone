@@ -17,31 +17,5 @@
     border: 1px solid #4c5f6b;
 }
 
-.article .img-rounded{
-    display: block;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
 
-.user-section a{
-    color: #f9b9f2;
-}
 
-.article-details a{
-    text-decoration: none;
-}
-
-.like-btn{
-    padding: 5px;
-    color: #f9b9f2;
-    border: 2px solid #f9b9f2;
-    cursor: pointer;
-    float: right;
-    transition: 0.3s;
-}
-
-.like-btn:hover{
-    color: white;
-    background-color: #f9b9f2;
-}

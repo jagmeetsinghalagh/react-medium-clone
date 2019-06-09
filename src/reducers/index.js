@@ -2,9 +2,10 @@ import { combineReducers } from 'redux';
 
 import articleReducer from './articleReducer';
 import tagsReducer from './tagsReducer';
+import profileReducer from './profileReducer';
 
 export default combineReducers({
-    globalArticles: articleReducer,
-    userArticles: articleReducer,
-    tags: tagsReducer
+    articles: articleReducer,
+    tags: tagsReducer,
+    profile: profileReducer
 });

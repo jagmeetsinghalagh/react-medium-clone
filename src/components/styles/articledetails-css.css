@@ -1,0 +1,11 @@
+.article-details .article-header{
+    background-color: #f9b9f2;
+    color: white;
+    padding: 1.5rem;
+    padding-left: 3rem;
+}
+
+.article-body{
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+}
