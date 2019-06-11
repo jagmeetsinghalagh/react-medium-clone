@@ -1,6 +1,8 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { registerUser } from '../actions/authActions';
 import './styles/registercomponent-css.css';
 
 class RegisterComponent extends React.Component {
@@ -17,7 +19,8 @@ class RegisterComponent extends React.Component {
 
     onSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(this.state);
+        this.props.registerUser(this.state);
+        this.props.history.push('/');
     }
 
     render = () =>{
@@ -60,4 +63,6 @@ class RegisterComponent extends React.Component {
     }
 }
 
-export default RegisterComponent;
+export default connect(null,{
+    registerUser
+})(RegisterComponent);

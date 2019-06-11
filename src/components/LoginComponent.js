@@ -1,6 +1,8 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { loginUser } from '../actions/authActions';
 import './styles/logincomponent-css.css';
 
 class LoginComponent extends React.Component {
@@ -17,6 +19,8 @@ class LoginComponent extends React.Component {
     onSubmitHandler = (event) => {
         event.preventDefault();
         console.log(this.state);
+        this.props.loginUser(this.state.email,this.state.password);  
+        this.props.history.push('/');
     }
 
     render = () => {
@@ -52,4 +56,6 @@ class LoginComponent extends React.Component {
     }
 }
 
-export default LoginComponent;
+export default connect(null,{
+    loginUser
+})(LoginComponent);
