@@ -2,7 +2,8 @@ import {
     LOGIN_SUCCESS,
     USER_LOADED,
     LOGOUT_SUCCESS,
-    USER_REGISTERED
+    USER_REGISTERED,
+    USER_UPDATED
 } from '../actions/types';
 
 const initialState = {
@@ -23,6 +24,7 @@ export default function(state=initialState, action) {
             }
         case LOGIN_SUCCESS:
         case USER_REGISTERED:
+        case USER_UPDATED:
             return {
                 ...state,
                 token: localStorage.setItem('token', action.payload.token),

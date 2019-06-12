@@ -14,6 +14,7 @@ import RegisterComponent from './RegisterComponent';
 import Profile from './Profile';
 import ArticleDetails from './ArticleDetails';
 import CreateArticle from './CreateArticle';
+import Settings from './Settings';
  
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
                     <Route path="/login" component={LoginComponent} />
                     <Route path="/register" component={RegisterComponent} />
                     <Route path="/profiles/:username" component={Profile} />
+                    <Route path="/settings" component={Settings} />
                     <Route path="/article/create" exact component={CreateArticle} />
                     <Route path="/article/:slug" component={ArticleDetails} />
                 </Switch>

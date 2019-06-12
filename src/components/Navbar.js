@@ -23,7 +23,7 @@ const Navbar = (props) => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/">
+                            <Link to="/settings">
                                 <i className="fas fa-cog"></i> Settings
                             </Link>
                         </li>

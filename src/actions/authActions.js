@@ -5,7 +5,8 @@ import {
     LOGIN_SUCCESS,
     USER_LOADED,
     LOGOUT_SUCCESS,
-    USER_REGISTERED
+    USER_REGISTERED,
+    USER_UPDATED
 } from './types';
 
 
@@ -94,4 +95,21 @@ export const logoutUser = () => async dispatch => {
     dispatch({
         type: LOGOUT_SUCCESS
     })
+}
+
+export const updateUser = (body) => async (dispatch,getState) => {
+    const token = getState().auth.token;
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    if(token){
+        config.headers["Authorization"] = `Token ${token}`;
+        let result = await axios.put(`${BASE_URL}/user`,JSON.stringify(body),config);
+        dispatch({
+            type: USER_UPDATED,
+            payload: result.data.user
+        });
+    }
 }

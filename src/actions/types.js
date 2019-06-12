@@ -7,3 +7,4 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const USER_LOADED = 'USER_LOADED';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const USER_REGISTERED = 'USER_REGISTERED';
+export const USER_UPDATED = 'USER_UPDATED';

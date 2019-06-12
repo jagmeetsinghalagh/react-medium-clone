@@ -33,7 +33,7 @@ class CreateArticle extends Component {
         this.createArticle();
     }
 
-     createArticle = async () => {
+    createArticle = async () => {
         const body = {
             article: this.state
         }
@@ -62,11 +62,19 @@ class CreateArticle extends Component {
         return (
             <div className="container m-5">
                 <form>
-                    <input name="title" onChange={this.onChangeHandler}  className="form-control m-3" placeholder="Article Title" />
-                    <input name="description" onChange={this.onChangeHandler}  className="form-control m-3" placeholder="What's this article about?" />
-                    <textarea name="body" onChange={this.onChangeHandler}  className="form-control m-3" placeholder="Write your article(in markdown)" />
-                    <input name="tags" onKeyDown={this.handleKeyDown}  className="form-control m-3" placeholder="Enter tags" />
-                    <p className="m-3">{ tags }</p>
+                    <div className="form-group" >
+                        <input name="title" onChange={this.onChangeHandler}  className="form-control form-control-lg" placeholder="Article Title" />
+                    </div>
+                    <div className="form-group" >
+                        <input name="description" onChange={this.onChangeHandler}  className="form-control form-control-lg" placeholder="What's this article about?" />
+                    </div>
+                    <div className="form-group" >
+                        <textarea name="body" onChange={this.onChangeHandler}  className="form-control form-control-lg" placeholder="Write your article(in markdown)" />
+                    </div>
+                    <div className="form-group" >
+                        <input name="tags" onKeyDown={this.handleKeyDown}  className="form-control form-control-lg" placeholder="Enter tags" />
+                    </div>
+                    <p className="form-control-lg">{ tags }</p>
                     <button  onClick={this.onSubmitHandler} type="button" className="btn btn-success btn-lg float-right">Publish Article</button>
                 </form>
             </div>
