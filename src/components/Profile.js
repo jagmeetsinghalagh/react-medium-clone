@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { getProfile } from '../actions/profileActions';
 import { getProfileArticles } from '../actions/articleActions';
@@ -34,10 +35,10 @@ class Profile extends React.Component {
                     <div className="container mt-3">
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
-                                <a className="nav-link" href="#" >My articles</a>    
+                                <Link className="nav-link" href="#" >My articles</Link>    
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#" >Favorited articles</a> 
+                                <Link className="nav-link" href="#" >Favorited articles</Link> 
                             </li>
                         </ul>
                         <div className="mt-4 col-md-8">

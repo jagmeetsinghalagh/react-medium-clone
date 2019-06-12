@@ -6,6 +6,7 @@ export default  (state = [],action) => {
             return action.payload;
         case GET_PROFILE_ARTICLES:
             return action.payload;
+    
         default:
             return state;
     }

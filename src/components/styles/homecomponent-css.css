@@ -2,20 +2,7 @@
     margin: 2rem;
 }
 
-.home-component .badge{
-    font-size: 1rem;
-    font-weight: normal;
-    background-color: #4c5f6b;
-    color: white;
-    margin: 1px;
-    cursor: pointer;
-}
 
-.home-component .badge:hover{
-    color: #4c5f6b;
-    background-color: white;
-    border: 1px solid #4c5f6b;
-}
 
 
 

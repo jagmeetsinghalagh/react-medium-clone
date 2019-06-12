@@ -1,4 +1,4 @@
-import React from'react';
+import React, { Fragment } from'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -15,20 +15,49 @@ const Navbar = (props) => {
                 <li>
                     <Link to="/">Home</Link>
                 </li>
-                <li>
-                    <Link to="/login" >Sign in</Link>
-                </li>
-                <li>
-                    <Link to="/" onClick={ props.logoutUser } >Log out</Link>
-                </li>
-                <li>
-                    <Link to="/register" >Sign up</Link>
-                </li>
+                {props.isAuthenticated &&
+                    <Fragment>
+                        <li>
+                            <Link to="/article/create">
+                                <i className="fas fa-edit"></i> New Article
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/">
+                                <i className="fas fa-cog"></i> Settings
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={`/profiles/${props.user.username}`}>{ props.user.username }</Link>
+                        </li>
+                        <li>
+                            <Link to="/" onClick={ props.logoutUser } >Log out</Link>
+                        </li>
+                    </Fragment>
+                }
+
+                {!props.isAuthenticated && 
+                    <Fragment>
+                        <li>
+                            <Link to="/login" >Sign in</Link>
+                        </li>
+                        <li>
+                            <Link to="/register" >Sign up</Link>
+                        </li>
+                    </Fragment>
+                }
             </ul>
         </nav>
     );
 }
 
-export default connect(null,{
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user
+    }
+}
+
+export default connect(mapStateToProps,{
     logoutUser
 })(Navbar);

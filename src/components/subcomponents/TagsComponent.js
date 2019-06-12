@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { getTags } from '../../actions/tagsActions';
 import Loader from './Loader';
+import '../styles/tagscomponent-css.css';
 
 class TagsComponent extends React.Component {
 

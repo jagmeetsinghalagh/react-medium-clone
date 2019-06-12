@@ -21,3 +21,4 @@ export const getProfileArticles = author => async dispatch => {
         payload: result.data.articles
     });
 }
+
