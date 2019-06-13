@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import { connect } from 'react-redux';
 
 import UserSectionComponent from './subcomponents/UserSectionComponent';
 import Loader from './subcomponents/Loader';
@@ -22,12 +23,25 @@ class ArticleDetails extends React.Component {
 
     render = () => {
         const { article } = this.state;
+        const { user } = this.props;
         if(article){
-            return (
-                <div className="article-details">
-                    <div className="article-header">
-                        <h1>{ article.title }</h1>
-                        <UserSectionComponent article={article} />
+            let buttons;
+            if(user){
+                if(user.username === article.author.username){
+                    buttons = (
+                        <div className="buttons">
+                            <button className="btn btn-sm btn-outline-secondary mr-2 ">
+                                <i className="fas fa-pencil-alt"></i> Edit Article
+                            </button>
+                            <button className="btn btn-sm btn-outline-danger">
+                                <i className="fas fa-trash-alt"></i> Delete article
+                            </button>
+                        </div>
+                    )
+                }
+            } else {
+                buttons = (
+                    <div className="buttons">
                         <button className="btn btn-sm btn-outline-secondary mr-2 ">
                             <i className="fas fa-plus"></i>
                             &nbsp; Follow { article.author.username }
@@ -35,6 +49,17 @@ class ArticleDetails extends React.Component {
                         <button className="btn btn-sm btn-outline-secondary  ">
                             <i className="fas fa-heart"></i>&nbsp; Favorite article({ article.favoritesCount })
                         </button>
+                    </div>
+                )
+            }
+
+
+            return (
+                <div className="article-details">
+                    <div className="article-header">
+                        <h1>{ article.title }</h1>
+                        <UserSectionComponent article={article} />
+                        {buttons}
                     </div>
                     <div className="container article-body">
                         <ReactMarkdown
@@ -56,4 +81,10 @@ class ArticleDetails extends React.Component {
 
 }
 
-export default ArticleDetails;
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.user
+    }
+}
+
+export default connect(mapStateToProps)(ArticleDetails);

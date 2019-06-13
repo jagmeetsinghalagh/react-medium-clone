@@ -1,8 +1,10 @@
 export const BASE_URL = 'https://conduit.productionready.io/api';
 export const GET_GLOBAL_ARTICLES = 'GET_GLOBAL_ARTICLES';
+export const LOADING_GLOBAL_ARTICLES = 'LOADING_GLOBAL_ARTICLES';
 export const GET_TAGS = 'GET_TAGS';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILE_ARTICLES = 'GET_PROFILE_ARTICLES';
+export const LOADING_PROFILE_ARTICLES = 'LOADING_PROFILE_ARTICLES';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const USER_LOADED = 'USER_LOADED';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';

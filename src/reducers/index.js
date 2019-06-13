@@ -6,7 +6,7 @@ import profileReducer from './profileReducer';
 import authReducer from './authReducer';
 
 export default combineReducers({
-    articles: articleReducer,
+    articleList: articleReducer,
     tags: tagsReducer,
     profile: profileReducer,
     auth: authReducer

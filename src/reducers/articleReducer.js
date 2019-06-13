@@ -1,12 +1,30 @@
-import { GET_GLOBAL_ARTICLES, GET_PROFILE_ARTICLES } from '../actions/types';
+import { 
+    GET_GLOBAL_ARTICLES, 
+    GET_PROFILE_ARTICLES,
+    LOADING_GLOBAL_ARTICLES,
+    LOADING_PROFILE_ARTICLES
+} from '../actions/types';
 
-export default  (state = [],action) => {
+const initialState = {
+    articles: [],
+    isLoading: false
+}
+
+export default  (state = initialState,action) => {
     switch(action.type){
+
+        case LOADING_GLOBAL_ARTICLES:
+        case LOADING_PROFILE_ARTICLES:
+            return {
+                ...state,
+                isLoading: true
+            }
         case GET_GLOBAL_ARTICLES:
-            return action.payload;
         case GET_PROFILE_ARTICLES:
-            return action.payload;
-    
+            return {
+                isLoading: false,
+                articles: action.payload
+            }   
         default:
             return state;
     }
