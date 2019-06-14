@@ -1,7 +1,8 @@
 import {
     LOADING_COMMENTS,
     COMMENTS_LOADED,
-    COMMENT_ADDED
+    COMMENT_ADDED,
+    COMMENT_DELETED
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,11 @@ export default (state = initialState, action) => {
         case COMMENT_ADDED:
             return {
                 comments: [...state.comments, action.payload],
+                isLoading: false
+            }
+        case COMMENT_DELETED:
+            return {
+                comments: state.comments.filter(comment => comment.id !== action.payload),
                 isLoading: false
             }
         default:

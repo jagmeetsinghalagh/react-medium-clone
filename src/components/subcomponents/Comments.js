@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import CommentList from './CommentList';
-import { getComments,addComment } from '../../actions/commentActions';
+import {
+    getComments,
+    addComment,
+    deleteComment
+} from '../../actions/commentActions';
 import Loader from './Loader'; 
 import '../styles/comments-css.css';
 
@@ -21,7 +25,7 @@ class Comments extends React.Component {
         this.setState({ commentBody: evt.target.value });
     }
 
-    onCommentSubmit = async () => {
+    onCommentSubmit = () => {
         let { slug } = this.props;
         let body = {
             comment: {
@@ -30,6 +34,12 @@ class Comments extends React.Component {
         }
         this.props.addComment(slug,body);
         this.setState({ commentBody: ''});
+        this.props.getComments(slug);
+    }
+
+    onCommentDelete = (id) => {
+        let { slug } = this.props;
+        this.props.deleteComment(slug,id);
         this.props.getComments(slug);
     }
 
@@ -61,7 +71,7 @@ class Comments extends React.Component {
                 <Fragment>
                     { commentHeader }
                     {commentList.comments.length > 0 ? (
-                            <CommentList comments={commentList.comments} />
+                            <CommentList comments={commentList.comments} onCommentDelete={this.onCommentDelete} user={this.props.user} />
                         ) : (
                             <p>No comments available</p>
                         )
@@ -86,5 +96,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,{
     getComments,
-    addComment
+    addComment,
+    deleteComment
 })(Comments);
