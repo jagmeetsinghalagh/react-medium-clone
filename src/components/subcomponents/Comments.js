@@ -1,54 +1,90 @@
 import React, { Fragment } from 'react';
-import axios from 'axios';
-import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { BASE_URL } from '../../actions/types';
+import CommentList from './CommentList';
+import { getComments,addComment } from '../../actions/commentActions';
+import Loader from './Loader'; 
 import '../styles/comments-css.css';
 
 class Comments extends React.Component {
 
     state = {
-        comments: []
+        commentBody: ''
     }
 
-    componentDidMount = async () => {
-        const { slug } = this.props;
-        let result = await axios.get(`${BASE_URL}/articles/${slug}/comments`);
-        this.setState({ comments: result.data.comments });
+    componentDidMount = () => {
+        this.props.getComments(this.props.slug);
+    }
+
+    onChangeHandler = (evt) => {
+        this.setState({ commentBody: evt.target.value });
+    }
+
+    onCommentSubmit = async () => {
+        let { slug } = this.props;
+        let body = {
+            comment: {
+                body: this.state.commentBody
+            }
+        }
+        this.props.addComment(slug,body);
+        this.setState({ commentBody: ''});
+        this.props.getComments(slug);
     }
 
     render = () => {
-        const { comments } = this.state;
-        if(comments.length > 0){
+        const { commentList } = this.props;
+        let commentHeader;
+        if(this.props.isAuthenticated){
+            commentHeader = (
+                <div className="card mb-3">
+                    <form>
+                        <textarea value={this.state.commentBody} onChange={this.onChangeHandler} style={{ height: '7rem', border: 'none' }} name="body" type="text" placeholder="Write a comment..." className="form-control form-control-lg" />
+                    </form>
+                    <div style={{maxHeight: '3.5rem'}} className="card-footer">
+                        <button onClick={this.onCommentSubmit}  className="btn btn-success float-right">
+                            Post Comment
+                        </button>
+                    </div>
+                </div>
+            )
+        } else {
+            commentHeader = (
+                <p className="mb-3 lead"><Link to="/login" >Sign in</Link> or   <Link to="/register" >sign up</Link> to add comments on this    article.
+                </p>
+            )
+        }
+        
+        if(!commentList.isLoading){
             return (
                 <Fragment>
-                    <p className="mb-3 lead"><Link to="/login" >Sign in</Link> or <Link to="/register" >sign up</Link> to add comments on this article.</p>
-                    {   
-                        comments.map(comment => {
-                            return  (
-                                <div key={ comment.id } className="comment card">
-                                    <div className="card-body">
-                                        { comment.body }
-                                    </div>
-                                    <div className="card-footer d-flex">
-                                        <img className="img-rounded" src={comment.author.image} alt="noimg" />
-                                        <small className="text-muted">
-                                            <Link to={`/profiles/${comment.author.username}`}>&nbsp;{ comment.author.username }</Link>&nbsp;
-                                            <Moment fromNow>{ comment.createdAt }</Moment>
-                                        </small>
-                                    </div>
-                                </div>
-                            )
-                        })
+                    { commentHeader }
+                    {commentList.comments.length > 0 ? (
+                            <CommentList comments={commentList.comments} />
+                        ) : (
+                            <p>No comments available</p>
+                        )
                     }
                 </Fragment>
             )
         } else {
-            return <p>No comments!</p>
+            return <Loader />
         }
     }
 
 }
 
-export default Comments;
+const mapStateToProps = (state) => {
+    return {
+        commentList: state.commentList,
+        user: state.auth.user,
+        isAuthenticated: state.auth.isAuthenticated,
+        token: state.auth.token
+    }
+}
+
+export default connect(mapStateToProps,{
+    getComments,
+    addComment
+})(Comments);

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import UserSectionComponent from './subcomponents/UserSectionComponent';
 import Loader from './subcomponents/Loader';
@@ -21,6 +22,20 @@ class ArticleDetails extends React.Component {
         this.setState({ article: result.data.article });
     }
 
+    onDeleteHandler = async () => {
+        const token = this.props.token;
+        const config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        };
+        if(token){
+            config.headers["Authorization"] = `Token ${token}`;
+            await axios.delete(`${BASE_URL}/articles/${this.state.article.slug}`,config);
+            this.props.history.push('/');
+        }
+    }
+
     render = () => {
         const { article } = this.state;
         const { user } = this.props;
@@ -30,10 +45,10 @@ class ArticleDetails extends React.Component {
                 if(user.username === article.author.username){
                     buttons = (
                         <div className="buttons">
-                            <button className="btn btn-sm btn-outline-secondary mr-2 ">
+                            <Link to="/article/create" className="btn btn-sm btn-outline-secondary mr-2 ">
                                 <i className="fas fa-pencil-alt"></i> Edit Article
-                            </button>
-                            <button className="btn btn-sm btn-outline-danger">
+                            </Link>
+                            <button onClick={this.onDeleteHandler} className="btn btn-sm btn-outline-danger">
                                 <i className="fas fa-trash-alt"></i> Delete article
                             </button>
                         </div>
@@ -83,7 +98,8 @@ class ArticleDetails extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.auth.user
+        user: state.auth.user,
+        token: state.auth.token
     }
 }
 
