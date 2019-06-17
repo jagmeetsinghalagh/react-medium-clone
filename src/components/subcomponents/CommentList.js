@@ -4,6 +4,16 @@ import { Link } from 'react-router-dom';
 
 const CommentList = (props) => {
     let { comments } = props;
+    let deleteButton;
+    if(props.user){
+        comments.forEach(comment => {
+            if(props.user.username === comment.author.username){
+                deleteButton = (
+                    <i onClick={() => props.onCommentDelete(comment.id)} style={{ cursor: 'pointer' }} className="fas fa-trash-alt ml-5"></i>
+                )
+            }
+        });
+    }
     return (
         comments.map(comment => {
             return  (
@@ -17,10 +27,7 @@ const CommentList = (props) => {
                             <Link to={`/profiles/${comment.author.username}`}>&nbsp;{ comment.author.username }</Link>&nbsp;
                             <Moment fromNow>{ comment.createdAt }</Moment>
                         </small>
-                        {props.user.username === comment.author.username &&     (
-                            <i onClick={() => props.onCommentDelete(comment.id)} style={{ cursor: 'pointer' }} className="fas        fa-trash-alt ml-5"></i>
-                         )
-                        }
+                        {deleteButton}
                     </div>
                 </div>
             )
